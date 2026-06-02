@@ -1,0 +1,263 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==================== AUTH & USUARIOS ====================
+
+enum Role {
+  CLIENTE
+  OPERADORA
+  ADMIN
+}
+
+model Usuario {
+  id            String    @id @default(uuid())
+  nombre        String
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  telefono      String?
+  pais          String?
+  canalPreferido String?  @map("canal_preferido")
+  telegramId    String?   @map("telegram_id")
+  role          Role      @default(CLIENTE)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  pedidos       Pedido[]
+  entradas      Entrada[]
+  tickets       Ticket[]
+
+  @@map("usuarios")
+}
+
+// ==================== CONTENIDO ====================
+
+enum EstadoSeccion {
+  BORRADOR
+  PUBLICADO
+  ARCHIVADO
+}
+
+enum TipoTemplate {
+  CURSO
+  TALLER
+  PACK
+  LANDING
+  LIBRE
+}
+
+model Seccion {
+  id            String         @id @default(uuid())
+  nombre        String
+  slug          String         @unique
+  template      TipoTemplate
+  descripcion   String?        @db.Text
+  imagenPortada String?        @map("imagen_portada")
+  precioArs     Decimal?       @map("precio_ars") @db.Decimal(10, 2)
+  precioUsd     Decimal?       @map("precio_usd") @db.Decimal(10, 2)
+  contenidoHtml String?        @map("contenido_html") @db.Text
+  contenidoCss  String?        @map("contenido_css") @db.Text
+  datosEditor   Json?          @map("datos_editor")
+  estado        EstadoSeccion  @default(BORRADOR)
+  createdAt     DateTime       @default(now()) @map("created_at")
+  publishedAt   DateTime?      @map("published_at")
+
+  modulos       Modulo[]
+  evento        Evento?
+  pedidos       Pedido[]
+
+  @@map("secciones")
+}
+
+model Modulo {
+  id          String   @id @default(uuid())
+  seccionId   String   @map("seccion_id")
+  nombre      String
+  orden       Int
+  descripcion String?  @db.Text
+
+  seccion     Seccion         @relation(fields: [seccionId], references: [id], onDelete: Cascade)
+  archivos    ArchivoModulo[]
+
+  @@map("modulos")
+}
+
+model ArchivoModulo {
+  id           String @id @default(uuid())
+  moduloId     String @map("modulo_id")
+  nombre       String
+  tipo         String // video, pdf, audio, imagen
+  rutaStorage  String @map("ruta_storage")
+  orden        Int
+  tamanoBytes  BigInt? @map("tamano_bytes")
+
+  modulo       Modulo @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+
+  @@map("archivos_modulo")
+}
+
+// ==================== PRODUCTOS INDIVIDUALES ====================
+
+enum EstadoProducto {
+  DISPONIBLE
+  RETIRADO
+}
+
+model ProductoArchivo {
+  id            String         @id @default(uuid())
+  nombre        String
+  descripcion   String?        @db.Text
+  precioArs     Decimal?       @map("precio_ars") @db.Decimal(10, 2)
+  precioUsd     Decimal?       @map("precio_usd") @db.Decimal(10, 2)
+  tipo          String         // manual, foto, video, pack
+  rutaStorage   String         @map("ruta_storage")
+  imagenPreview String?        @map("imagen_preview")
+  estado        EstadoProducto @default(DISPONIBLE)
+  totalVentas   Int            @default(0) @map("total_ventas")
+  createdAt     DateTime       @default(now()) @map("created_at")
+
+  pedidos       Pedido[]
+
+  @@map("productos_archivo")
+}
+
+// ==================== EVENTOS PRESENCIALES ====================
+
+enum EstadoEvento {
+  ABIERTO
+  AGOTADO
+  FINALIZADO
+  CANCELADO
+}
+
+model Evento {
+  id          String       @id @default(uuid())
+  seccionId   String       @unique @map("seccion_id")
+  nombre      String
+  fecha       DateTime     @db.Date
+  horaInicio  String       @map("hora_inicio")
+  horaFin     String?      @map("hora_fin")
+  lugar       String?
+  cupoMaximo  Int          @map("cupo_maximo")
+  precioArs   Decimal?     @map("precio_ars") @db.Decimal(10, 2)
+  precioUsd   Decimal?     @map("precio_usd") @db.Decimal(10, 2)
+  estado      EstadoEvento @default(ABIERTO)
+  createdAt   DateTime     @default(now()) @map("created_at")
+
+  seccion     Seccion      @relation(fields: [seccionId], references: [id], onDelete: Cascade)
+  entradas    Entrada[]
+
+  @@map("eventos")
+}
+
+enum EstadoEntrada {
+  VALIDA
+  ASISTIDO
+  CANCELADA
+}
+
+model Entrada {
+  id               String        @id @default(uuid())
+  eventoId         String        @map("evento_id")
+  clienteId        String        @map("cliente_id")
+  codigoQr         String        @unique @default(uuid()) @map("codigo_qr")
+  imagenQr         String?       @map("imagen_qr")
+  estado           EstadoEntrada @default(VALIDA)
+  fechaCompra      DateTime      @default(now()) @map("fecha_compra")
+  fechaAsistencia  DateTime?     @map("fecha_asistencia")
+
+  evento           Evento        @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+  cliente          Usuario       @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+
+  @@unique([eventoId, clienteId])
+  @@index([codigoQr])
+  @@map("entradas")
+}
+
+// ==================== PEDIDOS ====================
+
+enum TipoPedido {
+  CURSO
+  SESION
+  TIRADA
+  ENTRADA
+  ARCHIVO
+}
+
+enum EstadoPago {
+  PENDIENTE
+  CONFIRMADO
+  REEMBOLSADO
+}
+
+enum EstadoEntrega {
+  PENDIENTE
+  EN_PREPARACION
+  ENTREGADO
+  AGENDADO
+  QR_ENVIADO
+}
+
+model Pedido {
+  id             String        @id @default(uuid())
+  clienteId      String        @map("cliente_id")
+  tipo           TipoPedido
+  seccionId      String?       @map("seccion_id")
+  eventoId       String?       @map("evento_id")
+  productoId     String?       @map("producto_id")
+  monto          Decimal?      @db.Decimal(10, 2)
+  moneda         String        @default("ARS")
+  metodoPago     String?       @map("metodo_pago")
+  estadoPago     EstadoPago    @default(PENDIENTE) @map("estado_pago")
+  estadoEntrega  EstadoEntrega @default(PENDIENTE) @map("estado_entrega")
+  canalCompra    String?       @map("canal_compra")
+  comprobante    String?
+  notas          String?       @db.Text
+  createdAt      DateTime      @default(now()) @map("created_at")
+  paidAt         DateTime?     @map("paid_at")
+  deliveredAt    DateTime?     @map("delivered_at")
+
+  cliente        Usuario          @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  seccion        Seccion?         @relation(fields: [seccionId], references: [id])
+  producto       ProductoArchivo? @relation(fields: [productoId], references: [id])
+  tickets        Ticket[]
+
+  @@map("pedidos")
+}
+
+// ==================== TICKETS ====================
+
+enum TipoTicket {
+  CONSULTA
+  RECLAMO
+  SOPORTE_TECNICO
+}
+
+enum EstadoTicket {
+  ABIERTO
+  EN_REVISION
+  RESUELTO
+}
+
+model Ticket {
+  id          String       @id @default(uuid())
+  clienteId   String       @map("cliente_id")
+  pedidoId    String?      @map("pedido_id")
+  canal       String
+  tipo        TipoTicket
+  descripcion String       @db.Text
+  estado      EstadoTicket @default(ABIERTO)
+  respuesta   String?      @db.Text
+  createdAt   DateTime     @default(now()) @map("created_at")
+  resolvedAt  DateTime?    @map("resolved_at")
+
+  cliente     Usuario      @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  pedido      Pedido?      @relation(fields: [pedidoId], references: [id])
+
+  @@map("tickets")
+}
