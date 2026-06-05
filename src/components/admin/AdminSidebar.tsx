@@ -8,9 +8,11 @@ import {
   Users,
   BookOpen,
   CalendarDays,
+  Clock,
   QrCode,
   FileText,
   MessageSquare,
+  Sparkles,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -24,8 +26,10 @@ interface AdminSidebarProps {
 const NAV_ITEMS = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/admin/pedidos", icon: ShoppingBag, label: "Pedidos" },
+  { href: "/admin/tiradas", icon: Sparkles, label: "Tiradas" },
   { href: "/admin/clientes", icon: Users, label: "Clientes" },
   { href: "/admin/secciones", icon: BookOpen, label: "Secciones" },
+  { href: "/admin/sesiones", icon: Clock, label: "Sesiones" },
   { href: "/admin/eventos", icon: CalendarDays, label: "Eventos" },
   { href: "/admin/archivos", icon: FileText, label: "Archivos" },
   { href: "/admin/tickets", icon: MessageSquare, label: "Tickets" },

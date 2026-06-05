@@ -5,7 +5,7 @@ const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "dev-secret-change-in-production"
 );
 
-const PROTECTED_ROUTES = ["/mi-cuenta", "/admin"];
+const PROTECTED_ROUTES = ["/mi-cuenta", "/admin", "/solicitar-tirada", "/agendar"];
 const ADMIN_ROUTES = ["/admin"];
 const AUTH_ROUTES = ["/login", "/registro"];
 
@@ -50,6 +50,8 @@ export const config = {
   matcher: [
     "/mi-cuenta/:path*",
     "/admin/:path*",
+    "/solicitar-tirada",
+    "/agendar/:path*",
     "/login",
     "/registro",
   ],

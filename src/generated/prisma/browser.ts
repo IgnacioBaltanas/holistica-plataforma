@@ -58,6 +58,21 @@ export type Entrada = Prisma.EntradaModel
  */
 export type Pedido = Prisma.PedidoModel
 /**
+ * Model Disponibilidad
+ * 
+ */
+export type Disponibilidad = Prisma.DisponibilidadModel
+/**
+ * Model FechaBloqueada
+ * 
+ */
+export type FechaBloqueada = Prisma.FechaBloqueadaModel
+/**
+ * Model SesionAgendada
+ * 
+ */
+export type SesionAgendada = Prisma.SesionAgendadaModel
+/**
  * Model Ticket
  * 
  */

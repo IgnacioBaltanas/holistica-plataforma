@@ -420,6 +420,36 @@ export type EnumEstadoEntregaWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumEstadoEntregaFilter<$PrismaModel>
 }
 
+export type BoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
+}
+
+export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBoolFilter<$PrismaModel>
+  _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type EnumEstadoSesionFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoSesion | Prisma.EnumEstadoSesionFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoSesionFilter<$PrismaModel> | $Enums.EstadoSesion
+}
+
+export type EnumEstadoSesionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoSesion | Prisma.EnumEstadoSesionFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoSesionWithAggregatesFilter<$PrismaModel> | $Enums.EstadoSesion
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoSesionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoSesionFilter<$PrismaModel>
+}
+
 export type EnumTipoTicketFilter<$PrismaModel = never> = {
   equals?: $Enums.TipoTicket | Prisma.EnumTipoTicketFieldRefInput<$PrismaModel>
   in?: $Enums.TipoTicket[] | Prisma.ListEnumTipoTicketFieldRefInput<$PrismaModel>
@@ -855,6 +885,36 @@ export type NestedEnumEstadoEntregaWithAggregatesFilter<$PrismaModel = never> = 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumEstadoEntregaFilter<$PrismaModel>
   _max?: Prisma.NestedEnumEstadoEntregaFilter<$PrismaModel>
+}
+
+export type NestedBoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
+}
+
+export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBoolFilter<$PrismaModel>
+  _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type NestedEnumEstadoSesionFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoSesion | Prisma.EnumEstadoSesionFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoSesionFilter<$PrismaModel> | $Enums.EstadoSesion
+}
+
+export type NestedEnumEstadoSesionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstadoSesion | Prisma.EnumEstadoSesionFieldRefInput<$PrismaModel>
+  in?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstadoSesion[] | Prisma.ListEnumEstadoSesionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstadoSesionWithAggregatesFilter<$PrismaModel> | $Enums.EstadoSesion
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstadoSesionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstadoSesionFilter<$PrismaModel>
 }
 
 export type NestedEnumTipoTicketFilter<$PrismaModel = never> = {

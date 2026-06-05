@@ -59,6 +59,9 @@ export const ModelName = {
   Evento: 'Evento',
   Entrada: 'Entrada',
   Pedido: 'Pedido',
+  Disponibilidad: 'Disponibilidad',
+  FechaBloqueada: 'FechaBloqueada',
+  SesionAgendada: 'SesionAgendada',
   Ticket: 'Ticket'
 } as const
 
@@ -203,12 +206,55 @@ export const PedidoScalarFieldEnum = {
   canalCompra: 'canalCompra',
   comprobante: 'comprobante',
   notas: 'notas',
+  datosExtra: 'datosExtra',
+  archivoRespuesta: 'archivoRespuesta',
+  mensajeRespuesta: 'mensajeRespuesta',
   createdAt: 'createdAt',
   paidAt: 'paidAt',
   deliveredAt: 'deliveredAt'
 } as const
 
 export type PedidoScalarFieldEnum = (typeof PedidoScalarFieldEnum)[keyof typeof PedidoScalarFieldEnum]
+
+
+export const DisponibilidadScalarFieldEnum = {
+  id: 'id',
+  diaSemana: 'diaSemana',
+  horaInicio: 'horaInicio',
+  horaFin: 'horaFin',
+  activo: 'activo'
+} as const
+
+export type DisponibilidadScalarFieldEnum = (typeof DisponibilidadScalarFieldEnum)[keyof typeof DisponibilidadScalarFieldEnum]
+
+
+export const FechaBloqueadaScalarFieldEnum = {
+  id: 'id',
+  fecha: 'fecha',
+  motivo: 'motivo'
+} as const
+
+export type FechaBloqueadaScalarFieldEnum = (typeof FechaBloqueadaScalarFieldEnum)[keyof typeof FechaBloqueadaScalarFieldEnum]
+
+
+export const SesionAgendadaScalarFieldEnum = {
+  id: 'id',
+  pedidoId: 'pedidoId',
+  clienteId: 'clienteId',
+  tipoServicio: 'tipoServicio',
+  fecha: 'fecha',
+  horaInicio: 'horaInicio',
+  horaFin: 'horaFin',
+  duracion: 'duracion',
+  modalidad: 'modalidad',
+  meetLink: 'meetLink',
+  lugar: 'lugar',
+  notas: 'notas',
+  estado: 'estado',
+  createdAt: 'createdAt'
+} as const
+
+export type SesionAgendadaScalarFieldEnum = (typeof SesionAgendadaScalarFieldEnum)[keyof typeof SesionAgendadaScalarFieldEnum]
 
 
 export const TicketScalarFieldEnum = {

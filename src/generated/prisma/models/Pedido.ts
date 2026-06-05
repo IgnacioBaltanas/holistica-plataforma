@@ -49,6 +49,8 @@ export type PedidoMinAggregateOutputType = {
   canalCompra: string | null
   comprobante: string | null
   notas: string | null
+  archivoRespuesta: string | null
+  mensajeRespuesta: string | null
   createdAt: Date | null
   paidAt: Date | null
   deliveredAt: Date | null
@@ -69,6 +71,8 @@ export type PedidoMaxAggregateOutputType = {
   canalCompra: string | null
   comprobante: string | null
   notas: string | null
+  archivoRespuesta: string | null
+  mensajeRespuesta: string | null
   createdAt: Date | null
   paidAt: Date | null
   deliveredAt: Date | null
@@ -89,6 +93,9 @@ export type PedidoCountAggregateOutputType = {
   canalCompra: number
   comprobante: number
   notas: number
+  datosExtra: number
+  archivoRespuesta: number
+  mensajeRespuesta: number
   createdAt: number
   paidAt: number
   deliveredAt: number
@@ -119,6 +126,8 @@ export type PedidoMinAggregateInputType = {
   canalCompra?: true
   comprobante?: true
   notas?: true
+  archivoRespuesta?: true
+  mensajeRespuesta?: true
   createdAt?: true
   paidAt?: true
   deliveredAt?: true
@@ -139,6 +148,8 @@ export type PedidoMaxAggregateInputType = {
   canalCompra?: true
   comprobante?: true
   notas?: true
+  archivoRespuesta?: true
+  mensajeRespuesta?: true
   createdAt?: true
   paidAt?: true
   deliveredAt?: true
@@ -159,6 +170,9 @@ export type PedidoCountAggregateInputType = {
   canalCompra?: true
   comprobante?: true
   notas?: true
+  datosExtra?: true
+  archivoRespuesta?: true
+  mensajeRespuesta?: true
   createdAt?: true
   paidAt?: true
   deliveredAt?: true
@@ -266,6 +280,9 @@ export type PedidoGroupByOutputType = {
   canalCompra: string | null
   comprobante: string | null
   notas: string | null
+  datosExtra: runtime.JsonValue | null
+  archivoRespuesta: string | null
+  mensajeRespuesta: string | null
   createdAt: Date
   paidAt: Date | null
   deliveredAt: Date | null
@@ -309,6 +326,9 @@ export type PedidoWhereInput = {
   canalCompra?: Prisma.StringNullableFilter<"Pedido"> | string | null
   comprobante?: Prisma.StringNullableFilter<"Pedido"> | string | null
   notas?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  datosExtra?: Prisma.JsonNullableFilter<"Pedido">
+  archivoRespuesta?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  mensajeRespuesta?: Prisma.StringNullableFilter<"Pedido"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Pedido"> | Date | string
   paidAt?: Prisma.DateTimeNullableFilter<"Pedido"> | Date | string | null
   deliveredAt?: Prisma.DateTimeNullableFilter<"Pedido"> | Date | string | null
@@ -316,6 +336,7 @@ export type PedidoWhereInput = {
   seccion?: Prisma.XOR<Prisma.SeccionNullableScalarRelationFilter, Prisma.SeccionWhereInput> | null
   producto?: Prisma.XOR<Prisma.ProductoArchivoNullableScalarRelationFilter, Prisma.ProductoArchivoWhereInput> | null
   tickets?: Prisma.TicketListRelationFilter
+  sesion?: Prisma.XOR<Prisma.SesionAgendadaNullableScalarRelationFilter, Prisma.SesionAgendadaWhereInput> | null
 }
 
 export type PedidoOrderByWithRelationInput = {
@@ -333,6 +354,9 @@ export type PedidoOrderByWithRelationInput = {
   canalCompra?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobante?: Prisma.SortOrderInput | Prisma.SortOrder
   notas?: Prisma.SortOrderInput | Prisma.SortOrder
+  datosExtra?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivoRespuesta?: Prisma.SortOrderInput | Prisma.SortOrder
+  mensajeRespuesta?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   deliveredAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -340,6 +364,7 @@ export type PedidoOrderByWithRelationInput = {
   seccion?: Prisma.SeccionOrderByWithRelationInput
   producto?: Prisma.ProductoArchivoOrderByWithRelationInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
+  sesion?: Prisma.SesionAgendadaOrderByWithRelationInput
 }
 
 export type PedidoWhereUniqueInput = Prisma.AtLeast<{
@@ -360,6 +385,9 @@ export type PedidoWhereUniqueInput = Prisma.AtLeast<{
   canalCompra?: Prisma.StringNullableFilter<"Pedido"> | string | null
   comprobante?: Prisma.StringNullableFilter<"Pedido"> | string | null
   notas?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  datosExtra?: Prisma.JsonNullableFilter<"Pedido">
+  archivoRespuesta?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  mensajeRespuesta?: Prisma.StringNullableFilter<"Pedido"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Pedido"> | Date | string
   paidAt?: Prisma.DateTimeNullableFilter<"Pedido"> | Date | string | null
   deliveredAt?: Prisma.DateTimeNullableFilter<"Pedido"> | Date | string | null
@@ -367,6 +395,7 @@ export type PedidoWhereUniqueInput = Prisma.AtLeast<{
   seccion?: Prisma.XOR<Prisma.SeccionNullableScalarRelationFilter, Prisma.SeccionWhereInput> | null
   producto?: Prisma.XOR<Prisma.ProductoArchivoNullableScalarRelationFilter, Prisma.ProductoArchivoWhereInput> | null
   tickets?: Prisma.TicketListRelationFilter
+  sesion?: Prisma.XOR<Prisma.SesionAgendadaNullableScalarRelationFilter, Prisma.SesionAgendadaWhereInput> | null
 }, "id">
 
 export type PedidoOrderByWithAggregationInput = {
@@ -384,6 +413,9 @@ export type PedidoOrderByWithAggregationInput = {
   canalCompra?: Prisma.SortOrderInput | Prisma.SortOrder
   comprobante?: Prisma.SortOrderInput | Prisma.SortOrder
   notas?: Prisma.SortOrderInput | Prisma.SortOrder
+  datosExtra?: Prisma.SortOrderInput | Prisma.SortOrder
+  archivoRespuesta?: Prisma.SortOrderInput | Prisma.SortOrder
+  mensajeRespuesta?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   deliveredAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -412,6 +444,9 @@ export type PedidoScalarWhereWithAggregatesInput = {
   canalCompra?: Prisma.StringNullableWithAggregatesFilter<"Pedido"> | string | null
   comprobante?: Prisma.StringNullableWithAggregatesFilter<"Pedido"> | string | null
   notas?: Prisma.StringNullableWithAggregatesFilter<"Pedido"> | string | null
+  datosExtra?: Prisma.JsonNullableWithAggregatesFilter<"Pedido">
+  archivoRespuesta?: Prisma.StringNullableWithAggregatesFilter<"Pedido"> | string | null
+  mensajeRespuesta?: Prisma.StringNullableWithAggregatesFilter<"Pedido"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Pedido"> | Date | string
   paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Pedido"> | Date | string | null
   deliveredAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Pedido"> | Date | string | null
@@ -429,6 +464,9 @@ export type PedidoCreateInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
@@ -436,6 +474,7 @@ export type PedidoCreateInput = {
   seccion?: Prisma.SeccionCreateNestedOneWithoutPedidosInput
   producto?: Prisma.ProductoArchivoCreateNestedOneWithoutPedidosInput
   tickets?: Prisma.TicketCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateInput = {
@@ -453,10 +492,14 @@ export type PedidoUncheckedCreateInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaUncheckedCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoUpdateInput = {
@@ -471,6 +514,9 @@ export type PedidoUpdateInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -478,6 +524,7 @@ export type PedidoUpdateInput = {
   seccion?: Prisma.SeccionUpdateOneWithoutPedidosNestedInput
   producto?: Prisma.ProductoArchivoUpdateOneWithoutPedidosNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateInput = {
@@ -495,10 +542,14 @@ export type PedidoUncheckedUpdateInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUncheckedUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoCreateManyInput = {
@@ -516,6 +567,9 @@ export type PedidoCreateManyInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
@@ -533,6 +587,9 @@ export type PedidoUpdateManyMutationInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -553,6 +610,9 @@ export type PedidoUncheckedUpdateManyInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -583,6 +643,9 @@ export type PedidoCountOrderByAggregateInput = {
   canalCompra?: Prisma.SortOrder
   comprobante?: Prisma.SortOrder
   notas?: Prisma.SortOrder
+  datosExtra?: Prisma.SortOrder
+  archivoRespuesta?: Prisma.SortOrder
+  mensajeRespuesta?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   deliveredAt?: Prisma.SortOrder
@@ -607,6 +670,8 @@ export type PedidoMaxOrderByAggregateInput = {
   canalCompra?: Prisma.SortOrder
   comprobante?: Prisma.SortOrder
   notas?: Prisma.SortOrder
+  archivoRespuesta?: Prisma.SortOrder
+  mensajeRespuesta?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   deliveredAt?: Prisma.SortOrder
@@ -627,6 +692,8 @@ export type PedidoMinOrderByAggregateInput = {
   canalCompra?: Prisma.SortOrder
   comprobante?: Prisma.SortOrder
   notas?: Prisma.SortOrder
+  archivoRespuesta?: Prisma.SortOrder
+  mensajeRespuesta?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   deliveredAt?: Prisma.SortOrder
@@ -779,6 +846,22 @@ export type EnumEstadoEntregaFieldUpdateOperationsInput = {
   set?: $Enums.EstadoEntrega
 }
 
+export type PedidoCreateNestedOneWithoutSesionInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutSesionInput, Prisma.PedidoUncheckedCreateWithoutSesionInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutSesionInput
+  connect?: Prisma.PedidoWhereUniqueInput
+}
+
+export type PedidoUpdateOneWithoutSesionNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutSesionInput, Prisma.PedidoUncheckedCreateWithoutSesionInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutSesionInput
+  upsert?: Prisma.PedidoUpsertWithoutSesionInput
+  disconnect?: Prisma.PedidoWhereInput | boolean
+  delete?: Prisma.PedidoWhereInput | boolean
+  connect?: Prisma.PedidoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoUpdateToOneWithWhereWithoutSesionInput, Prisma.PedidoUpdateWithoutSesionInput>, Prisma.PedidoUncheckedUpdateWithoutSesionInput>
+}
+
 export type PedidoCreateNestedOneWithoutTicketsInput = {
   create?: Prisma.XOR<Prisma.PedidoCreateWithoutTicketsInput, Prisma.PedidoUncheckedCreateWithoutTicketsInput>
   connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutTicketsInput
@@ -807,12 +890,16 @@ export type PedidoCreateWithoutClienteInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   seccion?: Prisma.SeccionCreateNestedOneWithoutPedidosInput
   producto?: Prisma.ProductoArchivoCreateNestedOneWithoutPedidosInput
   tickets?: Prisma.TicketCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutClienteInput = {
@@ -829,10 +916,14 @@ export type PedidoUncheckedCreateWithoutClienteInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaUncheckedCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutClienteInput = {
@@ -879,6 +970,9 @@ export type PedidoScalarWhereInput = {
   canalCompra?: Prisma.StringNullableFilter<"Pedido"> | string | null
   comprobante?: Prisma.StringNullableFilter<"Pedido"> | string | null
   notas?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  datosExtra?: Prisma.JsonNullableFilter<"Pedido">
+  archivoRespuesta?: Prisma.StringNullableFilter<"Pedido"> | string | null
+  mensajeRespuesta?: Prisma.StringNullableFilter<"Pedido"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Pedido"> | Date | string
   paidAt?: Prisma.DateTimeNullableFilter<"Pedido"> | Date | string | null
   deliveredAt?: Prisma.DateTimeNullableFilter<"Pedido"> | Date | string | null
@@ -896,12 +990,16 @@ export type PedidoCreateWithoutSeccionInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   cliente: Prisma.UsuarioCreateNestedOneWithoutPedidosInput
   producto?: Prisma.ProductoArchivoCreateNestedOneWithoutPedidosInput
   tickets?: Prisma.TicketCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutSeccionInput = {
@@ -918,10 +1016,14 @@ export type PedidoUncheckedCreateWithoutSeccionInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaUncheckedCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutSeccionInput = {
@@ -962,12 +1064,16 @@ export type PedidoCreateWithoutProductoInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   cliente: Prisma.UsuarioCreateNestedOneWithoutPedidosInput
   seccion?: Prisma.SeccionCreateNestedOneWithoutPedidosInput
   tickets?: Prisma.TicketCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutProductoInput = {
@@ -984,10 +1090,14 @@ export type PedidoUncheckedCreateWithoutProductoInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutPedidoInput
+  sesion?: Prisma.SesionAgendadaUncheckedCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutProductoInput = {
@@ -1016,6 +1126,118 @@ export type PedidoUpdateManyWithWhereWithoutProductoInput = {
   data: Prisma.XOR<Prisma.PedidoUpdateManyMutationInput, Prisma.PedidoUncheckedUpdateManyWithoutProductoInput>
 }
 
+export type PedidoCreateWithoutSesionInput = {
+  id?: string
+  tipo: $Enums.TipoPedido
+  eventoId?: string | null
+  monto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  moneda?: string
+  metodoPago?: string | null
+  estadoPago?: $Enums.EstadoPago
+  estadoEntrega?: $Enums.EstadoEntrega
+  canalCompra?: string | null
+  comprobante?: string | null
+  notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
+  createdAt?: Date | string
+  paidAt?: Date | string | null
+  deliveredAt?: Date | string | null
+  cliente: Prisma.UsuarioCreateNestedOneWithoutPedidosInput
+  seccion?: Prisma.SeccionCreateNestedOneWithoutPedidosInput
+  producto?: Prisma.ProductoArchivoCreateNestedOneWithoutPedidosInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoUncheckedCreateWithoutSesionInput = {
+  id?: string
+  clienteId: string
+  tipo: $Enums.TipoPedido
+  seccionId?: string | null
+  eventoId?: string | null
+  productoId?: string | null
+  monto?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  moneda?: string
+  metodoPago?: string | null
+  estadoPago?: $Enums.EstadoPago
+  estadoEntrega?: $Enums.EstadoEntrega
+  canalCompra?: string | null
+  comprobante?: string | null
+  notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
+  createdAt?: Date | string
+  paidAt?: Date | string | null
+  deliveredAt?: Date | string | null
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutPedidoInput
+}
+
+export type PedidoCreateOrConnectWithoutSesionInput = {
+  where: Prisma.PedidoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutSesionInput, Prisma.PedidoUncheckedCreateWithoutSesionInput>
+}
+
+export type PedidoUpsertWithoutSesionInput = {
+  update: Prisma.XOR<Prisma.PedidoUpdateWithoutSesionInput, Prisma.PedidoUncheckedUpdateWithoutSesionInput>
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutSesionInput, Prisma.PedidoUncheckedCreateWithoutSesionInput>
+  where?: Prisma.PedidoWhereInput
+}
+
+export type PedidoUpdateToOneWithWhereWithoutSesionInput = {
+  where?: Prisma.PedidoWhereInput
+  data: Prisma.XOR<Prisma.PedidoUpdateWithoutSesionInput, Prisma.PedidoUncheckedUpdateWithoutSesionInput>
+}
+
+export type PedidoUpdateWithoutSesionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoPedidoFieldUpdateOperationsInput | $Enums.TipoPedido
+  eventoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  moneda?: Prisma.StringFieldUpdateOperationsInput | string
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoPago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  estadoEntrega?: Prisma.EnumEstadoEntregaFieldUpdateOperationsInput | $Enums.EstadoEntrega
+  canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cliente?: Prisma.UsuarioUpdateOneRequiredWithoutPedidosNestedInput
+  seccion?: Prisma.SeccionUpdateOneWithoutPedidosNestedInput
+  producto?: Prisma.ProductoArchivoUpdateOneWithoutPedidosNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoUncheckedUpdateWithoutSesionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clienteId?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoPedidoFieldUpdateOperationsInput | $Enums.TipoPedido
+  seccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  monto?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  moneda?: Prisma.StringFieldUpdateOperationsInput | string
+  metodoPago?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estadoPago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  estadoEntrega?: Prisma.EnumEstadoEntregaFieldUpdateOperationsInput | $Enums.EstadoEntrega
+  canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutPedidoNestedInput
+}
+
 export type PedidoCreateWithoutTicketsInput = {
   id?: string
   tipo: $Enums.TipoPedido
@@ -1028,12 +1250,16 @@ export type PedidoCreateWithoutTicketsInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
   cliente: Prisma.UsuarioCreateNestedOneWithoutPedidosInput
   seccion?: Prisma.SeccionCreateNestedOneWithoutPedidosInput
   producto?: Prisma.ProductoArchivoCreateNestedOneWithoutPedidosInput
+  sesion?: Prisma.SesionAgendadaCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutTicketsInput = {
@@ -1051,9 +1277,13 @@ export type PedidoUncheckedCreateWithoutTicketsInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
+  sesion?: Prisma.SesionAgendadaUncheckedCreateNestedOneWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutTicketsInput = {
@@ -1084,12 +1314,16 @@ export type PedidoUpdateWithoutTicketsInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cliente?: Prisma.UsuarioUpdateOneRequiredWithoutPedidosNestedInput
   seccion?: Prisma.SeccionUpdateOneWithoutPedidosNestedInput
   producto?: Prisma.ProductoArchivoUpdateOneWithoutPedidosNestedInput
+  sesion?: Prisma.SesionAgendadaUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutTicketsInput = {
@@ -1107,9 +1341,13 @@ export type PedidoUncheckedUpdateWithoutTicketsInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sesion?: Prisma.SesionAgendadaUncheckedUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoCreateManyClienteInput = {
@@ -1126,6 +1364,9 @@ export type PedidoCreateManyClienteInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
@@ -1143,12 +1384,16 @@ export type PedidoUpdateWithoutClienteInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   seccion?: Prisma.SeccionUpdateOneWithoutPedidosNestedInput
   producto?: Prisma.ProductoArchivoUpdateOneWithoutPedidosNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutClienteInput = {
@@ -1165,10 +1410,14 @@ export type PedidoUncheckedUpdateWithoutClienteInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUncheckedUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateManyWithoutClienteInput = {
@@ -1185,6 +1434,9 @@ export type PedidoUncheckedUpdateManyWithoutClienteInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1204,6 +1456,9 @@ export type PedidoCreateManySeccionInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
@@ -1221,12 +1476,16 @@ export type PedidoUpdateWithoutSeccionInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cliente?: Prisma.UsuarioUpdateOneRequiredWithoutPedidosNestedInput
   producto?: Prisma.ProductoArchivoUpdateOneWithoutPedidosNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutSeccionInput = {
@@ -1243,10 +1502,14 @@ export type PedidoUncheckedUpdateWithoutSeccionInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUncheckedUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateManyWithoutSeccionInput = {
@@ -1263,6 +1526,9 @@ export type PedidoUncheckedUpdateManyWithoutSeccionInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1282,6 +1548,9 @@ export type PedidoCreateManyProductoInput = {
   canalCompra?: string | null
   comprobante?: string | null
   notas?: string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: string | null
+  mensajeRespuesta?: string | null
   createdAt?: Date | string
   paidAt?: Date | string | null
   deliveredAt?: Date | string | null
@@ -1299,12 +1568,16 @@ export type PedidoUpdateWithoutProductoInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cliente?: Prisma.UsuarioUpdateOneRequiredWithoutPedidosNestedInput
   seccion?: Prisma.SeccionUpdateOneWithoutPedidosNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutProductoInput = {
@@ -1321,10 +1594,14 @@ export type PedidoUncheckedUpdateWithoutProductoInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutPedidoNestedInput
+  sesion?: Prisma.SesionAgendadaUncheckedUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateManyWithoutProductoInput = {
@@ -1341,6 +1618,9 @@ export type PedidoUncheckedUpdateManyWithoutProductoInput = {
   canalCompra?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   comprobante?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  datosExtra?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  archivoRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mensajeRespuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1392,6 +1672,9 @@ export type PedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   canalCompra?: boolean
   comprobante?: boolean
   notas?: boolean
+  datosExtra?: boolean
+  archivoRespuesta?: boolean
+  mensajeRespuesta?: boolean
   createdAt?: boolean
   paidAt?: boolean
   deliveredAt?: boolean
@@ -1399,6 +1682,7 @@ export type PedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   seccion?: boolean | Prisma.Pedido$seccionArgs<ExtArgs>
   producto?: boolean | Prisma.Pedido$productoArgs<ExtArgs>
   tickets?: boolean | Prisma.Pedido$ticketsArgs<ExtArgs>
+  sesion?: boolean | Prisma.Pedido$sesionArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedido"]>
 
@@ -1417,6 +1701,9 @@ export type PedidoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   canalCompra?: boolean
   comprobante?: boolean
   notas?: boolean
+  datosExtra?: boolean
+  archivoRespuesta?: boolean
+  mensajeRespuesta?: boolean
   createdAt?: boolean
   paidAt?: boolean
   deliveredAt?: boolean
@@ -1440,6 +1727,9 @@ export type PedidoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   canalCompra?: boolean
   comprobante?: boolean
   notas?: boolean
+  datosExtra?: boolean
+  archivoRespuesta?: boolean
+  mensajeRespuesta?: boolean
   createdAt?: boolean
   paidAt?: boolean
   deliveredAt?: boolean
@@ -1463,17 +1753,21 @@ export type PedidoSelectScalar = {
   canalCompra?: boolean
   comprobante?: boolean
   notas?: boolean
+  datosExtra?: boolean
+  archivoRespuesta?: boolean
+  mensajeRespuesta?: boolean
   createdAt?: boolean
   paidAt?: boolean
   deliveredAt?: boolean
 }
 
-export type PedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clienteId" | "tipo" | "seccionId" | "eventoId" | "productoId" | "monto" | "moneda" | "metodoPago" | "estadoPago" | "estadoEntrega" | "canalCompra" | "comprobante" | "notas" | "createdAt" | "paidAt" | "deliveredAt", ExtArgs["result"]["pedido"]>
+export type PedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clienteId" | "tipo" | "seccionId" | "eventoId" | "productoId" | "monto" | "moneda" | "metodoPago" | "estadoPago" | "estadoEntrega" | "canalCompra" | "comprobante" | "notas" | "datosExtra" | "archivoRespuesta" | "mensajeRespuesta" | "createdAt" | "paidAt" | "deliveredAt", ExtArgs["result"]["pedido"]>
 export type PedidoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cliente?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   seccion?: boolean | Prisma.Pedido$seccionArgs<ExtArgs>
   producto?: boolean | Prisma.Pedido$productoArgs<ExtArgs>
   tickets?: boolean | Prisma.Pedido$ticketsArgs<ExtArgs>
+  sesion?: boolean | Prisma.Pedido$sesionArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PedidoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1494,6 +1788,7 @@ export type $PedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     seccion: Prisma.$SeccionPayload<ExtArgs> | null
     producto: Prisma.$ProductoArchivoPayload<ExtArgs> | null
     tickets: Prisma.$TicketPayload<ExtArgs>[]
+    sesion: Prisma.$SesionAgendadaPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1510,6 +1805,9 @@ export type $PedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     canalCompra: string | null
     comprobante: string | null
     notas: string | null
+    datosExtra: runtime.JsonValue | null
+    archivoRespuesta: string | null
+    mensajeRespuesta: string | null
     createdAt: Date
     paidAt: Date | null
     deliveredAt: Date | null
@@ -1911,6 +2209,7 @@ export interface Prisma__PedidoClient<T, Null = never, ExtArgs extends runtime.T
   seccion<T extends Prisma.Pedido$seccionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$seccionArgs<ExtArgs>>): Prisma.Prisma__SeccionClient<runtime.Types.Result.GetResult<Prisma.$SeccionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   producto<T extends Prisma.Pedido$productoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$productoArgs<ExtArgs>>): Prisma.Prisma__ProductoArchivoClient<runtime.Types.Result.GetResult<Prisma.$ProductoArchivoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tickets<T extends Prisma.Pedido$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sesion<T extends Prisma.Pedido$sesionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$sesionArgs<ExtArgs>>): Prisma.Prisma__SesionAgendadaClient<runtime.Types.Result.GetResult<Prisma.$SesionAgendadaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1954,6 +2253,9 @@ export interface PedidoFieldRefs {
   readonly canalCompra: Prisma.FieldRef<"Pedido", 'String'>
   readonly comprobante: Prisma.FieldRef<"Pedido", 'String'>
   readonly notas: Prisma.FieldRef<"Pedido", 'String'>
+  readonly datosExtra: Prisma.FieldRef<"Pedido", 'Json'>
+  readonly archivoRespuesta: Prisma.FieldRef<"Pedido", 'String'>
+  readonly mensajeRespuesta: Prisma.FieldRef<"Pedido", 'String'>
   readonly createdAt: Prisma.FieldRef<"Pedido", 'DateTime'>
   readonly paidAt: Prisma.FieldRef<"Pedido", 'DateTime'>
   readonly deliveredAt: Prisma.FieldRef<"Pedido", 'DateTime'>
@@ -2417,6 +2719,25 @@ export type Pedido$ticketsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.TicketScalarFieldEnum | Prisma.TicketScalarFieldEnum[]
+}
+
+/**
+ * Pedido.sesion
+ */
+export type Pedido$sesionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SesionAgendada
+   */
+  select?: Prisma.SesionAgendadaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SesionAgendada
+   */
+  omit?: Prisma.SesionAgendadaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SesionAgendadaInclude<ExtArgs> | null
+  where?: Prisma.SesionAgendadaWhereInput
 }
 
 /**

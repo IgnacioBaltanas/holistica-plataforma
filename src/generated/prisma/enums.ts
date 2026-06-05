@@ -96,6 +96,16 @@ export const EstadoEntrega = {
 export type EstadoEntrega = (typeof EstadoEntrega)[keyof typeof EstadoEntrega]
 
 
+export const EstadoSesion = {
+  CONFIRMADA: 'CONFIRMADA',
+  COMPLETADA: 'COMPLETADA',
+  CANCELADA: 'CANCELADA',
+  NO_ASISTIO: 'NO_ASISTIO'
+} as const
+
+export type EstadoSesion = (typeof EstadoSesion)[keyof typeof EstadoSesion]
+
+
 export const TipoTicket = {
   CONSULTA: 'CONSULTA',
   RECLAMO: 'RECLAMO',

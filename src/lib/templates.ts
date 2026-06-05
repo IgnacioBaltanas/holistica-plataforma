@@ -152,9 +152,18 @@ const TEMPLATES: Record<string, string> = {
   LIBRE: "",
 };
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function getTemplateHtml(template: string, nombre: string, descripcion: string): string {
   const html = TEMPLATES[template] || "";
   return html
-    .replace(/\{\{nombre\}\}/g, nombre || "Titulo")
-    .replace(/\{\{descripcion\}\}/g, descripcion || "Descripcion del contenido.");
+    .replace(/\{\{nombre\}\}/g, escapeHtml(nombre || "Titulo"))
+    .replace(/\{\{descripcion\}\}/g, escapeHtml(descripcion || "Descripcion del contenido."));
 }

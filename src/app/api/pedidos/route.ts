@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     }
 
     const monto = seccion.precioArs;
-    const tipoPedido = tipo === "ENTRADA" ? "ENTRADA" : "CURSO";
+    const tipoPedido = tipo === "ENTRADA" ? "ENTRADA" : tipo === "SESION" ? "SESION" : "CURSO";
 
     const pedido = await prisma.pedido.create({
       data: {
@@ -65,6 +65,9 @@ export async function POST(request: NextRequest) {
         estadoPago: "PENDIENTE",
         estadoEntrega: "PENDIENTE",
         canalCompra: "web",
+        ...(tipo === "SESION" ? {
+          datosExtra: { tipoServicio: seccion.slug || "tarot" },
+        } : {}),
       },
     });
 

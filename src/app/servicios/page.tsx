@@ -6,11 +6,13 @@ export const metadata = { title: "Servicios" };
 const SERVICIOS = [
   {
     icon: Heart,
-    titulo: "Tarot - Tirada Personalizada",
+    titulo: "Tarot - Sesion Individual",
     descripcion: "Sesion individual de tarot con tirada personalizada segun tu consulta.",
     modalidad: "Virtual o presencial",
     duracion: "60 min",
     precio: "$8.000 ARS",
+    link: "/contacto",
+    linkText: "Consultar",
   },
   {
     icon: Calendar,
@@ -19,6 +21,8 @@ const SERVICIOS = [
     modalidad: "Virtual o presencial",
     duracion: "45 min",
     precio: "$6.000 ARS",
+    link: "/contacto",
+    linkText: "Consultar",
   },
   {
     icon: MessageCircle,
@@ -27,6 +31,8 @@ const SERVICIOS = [
     modalidad: "Virtual",
     duracion: "60 min",
     precio: "$10.000 ARS",
+    link: "/contacto",
+    linkText: "Consultar",
   },
   {
     icon: Video,
@@ -36,6 +42,8 @@ const SERVICIOS = [
     modalidad: "Contenido a pedido",
     duracion: "15-20 min de video",
     precio: "$5.000 ARS",
+    link: "/solicitar-tirada",
+    linkText: "Solicitar",
   },
 ];
 
@@ -67,10 +75,10 @@ export default function ServiciosPage() {
                 {servicio.precio}
               </span>
               <Link
-                href="/contacto"
+                href={servicio.link}
                 className="text-sm bg-[var(--color-primary)] text-white px-4 py-2 rounded-lg hover:bg-[var(--color-primary-dark)] transition-colors"
               >
-                Consultar
+                {servicio.linkText}
               </Link>
             </div>
           </div>

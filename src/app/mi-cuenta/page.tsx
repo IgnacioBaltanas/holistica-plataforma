@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import Link from "next/link";
-import { BookOpen, ShoppingBag, Ticket, Calendar } from "lucide-react";
+import { BookOpen, ShoppingBag, Ticket, Calendar, Sparkles, MessageSquare } from "lucide-react";
 
 export const metadata = { title: "Mi cuenta" };
 
@@ -25,10 +25,22 @@ const MENU_ITEMS = [
     description: "Entradas QR para eventos presenciales.",
   },
   {
+    href: "/mi-cuenta/tiradas",
+    icon: Sparkles,
+    title: "Mis tiradas",
+    description: "Tiradas de tarot personalizadas.",
+  },
+  {
     href: "/mi-cuenta/sesiones",
     icon: Calendar,
     title: "Mis sesiones",
     description: "Sesiones agendadas y pasadas.",
+  },
+  {
+    href: "/mi-cuenta/consultas",
+    icon: MessageSquare,
+    title: "Mis consultas",
+    description: "Consultas y soporte.",
   },
 ];
 

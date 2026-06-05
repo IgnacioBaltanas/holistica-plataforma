@@ -31,6 +31,7 @@ model Usuario {
   pedidos       Pedido[]
   entradas      Entrada[]
   tickets       Ticket[]
+  sesiones      SesionAgendada[]
 
   @@map("usuarios")
 }
@@ -218,6 +219,9 @@ model Pedido {
   canalCompra    String?       @map("canal_compra")
   comprobante    String?
   notas          String?       @db.Text
+  datosExtra     Json?         @map("datos_extra")
+  archivoRespuesta String?     @map("archivo_respuesta")
+  mensajeRespuesta String?     @map("mensaje_respuesta") @db.Text
   createdAt      DateTime      @default(now()) @map("created_at")
   paidAt         DateTime?     @map("paid_at")
   deliveredAt    DateTime?     @map("delivered_at")
@@ -226,8 +230,60 @@ model Pedido {
   seccion        Seccion?         @relation(fields: [seccionId], references: [id])
   producto       ProductoArchivo? @relation(fields: [productoId], references: [id])
   tickets        Ticket[]
+  sesion         SesionAgendada?
 
   @@map("pedidos")
+}
+
+// ==================== AGENDA DE SESIONES ====================
+
+model Disponibilidad {
+  id         String  @id @default(uuid())
+  diaSemana  Int     @map("dia_semana") // 0=domingo, 1=lunes ... 6=sabado
+  horaInicio String  @map("hora_inicio") // "09:00"
+  horaFin    String  @map("hora_fin")    // "18:00"
+  activo     Boolean @default(true)
+
+  @@unique([diaSemana])
+  @@map("disponibilidad")
+}
+
+model FechaBloqueada {
+  id     String   @id @default(uuid())
+  fecha  DateTime @db.Date
+  motivo String?
+
+  @@unique([fecha])
+  @@map("fechas_bloqueadas")
+}
+
+enum EstadoSesion {
+  CONFIRMADA
+  COMPLETADA
+  CANCELADA
+  NO_ASISTIO
+}
+
+model SesionAgendada {
+  id            String       @id @default(uuid())
+  pedidoId      String?      @unique @map("pedido_id")
+  clienteId     String       @map("cliente_id")
+  tipoServicio  String       @map("tipo_servicio") // tarot, meditacion, coaching
+  fecha         DateTime     @db.Date
+  horaInicio    String       @map("hora_inicio")   // "10:00"
+  horaFin       String       @map("hora_fin")      // "11:00"
+  duracion      Int          @default(60)           // minutos
+  modalidad     String       // virtual, presencial
+  meetLink      String?      @map("meet_link")
+  lugar         String?
+  notas         String?      @db.Text
+  estado        EstadoSesion @default(CONFIRMADA)
+  createdAt     DateTime     @default(now()) @map("created_at")
+
+  pedido        Pedido?      @relation(fields: [pedidoId], references: [id])
+  cliente       Usuario      @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+
+  @@map("sesiones_agendadas")
 }
 
 // ==================== TICKETS ====================
